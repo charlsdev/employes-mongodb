@@ -1,0 +1,38 @@
+.messages {
+   background: var(--vinoColor);
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: var(--blanco);
+   text-transform: uppercase;
+   font-size: 1.2rem;
+}
+
+.messages .line {
+   width: 10px;
+   margin: 0 15px !important;
+   font-size: 4.4rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 150px;
+}
+
+.messages .number {
+   font-size: 5rem;
+   font-weight: 600;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 150px;
+}
+
+.messages .text {
+   font-weight: 500;
+   font-style: italic;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 150px;
+}

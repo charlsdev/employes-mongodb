@@ -1,0 +1,41 @@
+@import url('./TSSans.min.css');
+
+:root {
+   --bodyColor: rgba(248, 248, 248, 0.5);
+   --blackFont: rgba(0, 0, 0, 0.75);
+   --vinoColor:#364E65;
+   --enabled: #d7d7d7;
+
+
+   --amarilloLd: #ffff00;
+   --rojoLd: #f32525;
+   --blanco: #fff;
+   --negro: #000;
+   --grey: #888;
+
+   --burning: #FF416C;
+   --color-main: #004880;
+   --citrica: #FFBE73;
+   --navColor: #2D3E50;
+   --citricaHover: #ffe7cc;
+   
+   --san: #C47F7A;
+   --dia: #ff8b6b;
+
+   --color-texto:#727C77;
+   --color-rojo:#ED0722;
+   --color-rgb-rojo:rgba(237,7,34,.21);
+   --color-rgb-celeste:#3793f645;
+   --color-celeste:#3793F6;
+   --color-input:#EEF5F9;
+
+   /** Colores Bootstrap **/
+   --primary: #188ae2;
+   --danger: #f34943;
+   --info: #35b8e0;
+   --warning: #fdc644;
+   --success: #31ce77;
+   --purple: #6b5eae;
+   --pink: #ff679b;
+   --ash: #3b3e47;
+}
