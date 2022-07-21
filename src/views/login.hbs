@@ -1,0 +1,248 @@
+      <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css">
+      <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css" type="text/css">
+      <link rel="stylesheet" href="/css/login.min.css" type="text/css">
+   </head>
+
+	<body>
+      <img class="wave" src="img/bck.jpg">
+      <div class="containerLogin">
+         <div class="img">
+            <img src="img/bc.svg">
+         </div>
+
+         <div class="login-content">
+            <form action="/login" method="POST">
+               <img src="img/avator.jpg">
+               <h2 class="title">Bienvenido</h2>
+               <div class="input-div one">
+                  <div class="i">
+                     <i class="fas fa-user"></i>
+                  </div>
+                  <div class="div">
+                     <h5>Cédula</h5>
+                     <input type="text" class="input" id="username">
+                  </div>
+               </div>
+               <div class="input-div pass">
+                  <div class="i">
+                     <i class="fas fa-lock"></i>
+                  </div>
+                  <div class="div">
+                     <h5>Contraseña</h5>
+                     <input type="password" class="input" id="password">
+                  </div>
+               </div>
+               <div class="link" onclick="openModalRegister();">No tienes una cuenta? ¡Registrate!</div>
+               <input type="submit" class="btnLogin" value="Login">
+            </form>
+         </div>
+      </div>
+
+      <script src="/jquery/jquery.min.js"></script>
+      <script src="/bootstrap/js/popper.min.js"></script>
+      <script src="/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/sweetalert2/sweetalert2.min.js"></script>
+      <script src="/fontawesome/all.min.js"></script>
+      <script src="/js/login.min.js"></script>
+
+      <div class="modal fade" id="modalRegister" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header d-flex justify-content-center">
+                  <div class="modal-title tittleModal">CREAR CUENTA</div>
+               </div>
+
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Cédula</label>
+                        <input type="text" class="form-control iptLogin" id="cedula" maxlength="10" placeholder="Ingrese su cédula"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Apellidos</label>
+                        <input type="text" class="form-control iptLogin" id="apellidos"  placeholder="Ingrese su apellido"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Nombres</label>
+                        <input type="text" class="form-control iptLogin" id="nombres"  placeholder="Ingrese su nombre"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control iptLogin" id="fechaNacimiento"  placeholder="Escoja su fecha de nacimiento"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Género</label>
+                        <select id="genero" class="form-control iptLogin">
+                           <option value="" disabled selected>Seleccionar...</option>
+                           <option value="Masculino">Masculino</option>
+                           <option value="Femenino">Femenino</option>
+                           <option value="No definido">No definido</option>
+                        </select>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Dirección</label>
+                        <input type="text" class="form-control iptLogin" id="direccion"  placeholder="Ingrese su dirección"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Teléfono</label>
+                        <input type="text" class="form-control iptLogin" id="telefono"  placeholder="Ingrese su teléfono" maxlength="10"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Email</label>
+                        <input type="text" class="form-control iptLogin" id="email"  placeholder="Ingrese su correo electrónico"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Contraseña</label>
+                        <input type="password" class="form-control iptLogin" id="passwordR"  placeholder="Ingrese su contraseña"/>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Confirmar Contraseña</label>
+                        <input type="password" class="form-control iptLogin" id="confPassword"  placeholder="Confirme su contrraseña"/>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="modal-footer d-flex justify-content-between align-items-center">
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-success btn-sm btnGeneral" onclick="createAccount();">
+                     Registrarme
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <script>
+         {{> notifications}}
+
+         const openModalRegister = () => {
+            $('#cedula').val('');
+            $('#apellidos').val('');
+            $('#nombres').val('');
+            $('#fechaNacimiento').val('');
+            $('#genero').val('');
+            $('#direccion').val('');
+            $('#telefono').val('');
+            $('#email').val('');
+            $('#passwordR').val('');
+            $('#confPassword').val('');
+
+            $('#modalRegister').modal('show');
+         }
+
+         const createAccount = () => {
+            cedula = $.trim($('#cedula').val());
+            apellidos = $.trim($('#apellidos').val());
+            nombres = $.trim($('#nombres').val());
+            fechaNacimiento = $.trim($('#fechaNacimiento').val());
+            genero = $.trim($('#genero').val());
+            direccion = $.trim($('#direccion').val());
+            telefono = $.trim($('#telefono').val());
+            email = $.trim($('#email').val());
+            password = $.trim($('#passwordR').val());
+            confPassword = $.trim($('#confPassword').val());
+            
+            Swal.fire({
+               title: 'Registrar Cuenta!',
+               html: `Deseas registrarte en el sistema Employes System.`,
+               imageUrl: '/img/employes.png',
+               imageWidth: 230,
+               imageHeight: 150,
+               imageAlt: 'Employes System',
+               showCancelButton: true,
+               confirmButtonColor: '#049947',
+               cancelButtonColor: '#f34943',
+               confirmButtonText: 'Sí, registrarme!',
+               cancelButtonText: 'No, cancelar!',
+               reverseButtons: true,
+               allowOutsideClick: false
+            }).then((result) => {
+               if (result.value == true) {
+                  if (
+                     cedula == '' || 
+                     apellidos == '' || 
+                     nombres == '' || 
+                     fechaNacimiento == '' || 
+                     genero == '' || 
+                     direccion == '' || 
+                     telefono == '' || 
+                     email == '' || 
+                     password == '' || 
+                     confPassword == ''
+                  ) {
+                     Swal.fire({
+                        position: 'top-end',
+                        imageUrl: '/img/employes.png',
+                        imageWidth: 230,
+                        imageHeight: 150,
+                        imageAlt: 'Employes System',
+                        title: 'CAMPOS VACÍOS',
+                        html: `<p style="font-size: 1rem;">Los campos no pueden ir vacíos o con espacios.</p>`,
+                        showConfirmButton: false,
+                        timer: 1500
+                     })
+                  } else {
+                     $.ajax({
+                        url: "/register",
+                        type: "POST",
+                        datatype: "json",
+                        data: {
+                           cedula,
+                           apellidos,
+                           nombres,
+                           fechaNacimiento,
+                           genero,
+                           direccion,
+                           telefono,
+                           email,
+                           password,
+                           confPassword
+                        },
+                     })
+                     .done(function(res) {
+                        if (res.res == 'true') {
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              imageUrl: '/img/employes.png',
+                              imageWidth: 230,
+                              imageHeight: 150,
+                              imageAlt: 'Employes System',
+                              allowOutsideClick: false
+                           }).then((result) => {
+                              if (result.value == true) {
+                                 $('#modalRegister').modal('hide')
+                              }
+                           })
+                        }
+                        
+                        if (res.res == 'false') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+
+                        if (res.res == 'error') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+                     })
+                     .fail(function() {
+                        console.log("Error");
+                     });
+                  }
+               }
+            })
+         }
+      </script>

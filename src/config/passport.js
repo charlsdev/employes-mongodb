@@ -6,8 +6,7 @@ const UsersModel = require('../models/Users');
 passport.use('local.login', new localStrategy({
    usernameField: 'username',
    passwordField: 'password',
-   passReqToCallback: true,
-   // session: false
+   passReqToCallback: true
 }, async (req, cedula, password, done) => {
    const user = await UsersModel
       .findOne({
@@ -20,11 +19,7 @@ passport.use('local.login', new localStrategy({
       const passLog = await user.matchPassword(password);
 
       if (passLog) {
-         if (user.estado == 'Disabled') {
-            return done(null, false, { message: '¡Usuario desactivado! Comuniquese con el administrador del sitema...'});
-         } else {
-            return done(null, user);
-         }
+         return done(null, user);
       } else {
          return done(null, false, { message: 'Usuario y/o contraseña incorrectas...'});
       }

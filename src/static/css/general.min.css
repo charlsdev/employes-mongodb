@@ -64,6 +64,40 @@ a {
    color: var(--negro);
 }
 
+.lblLogin {
+   font-weight: 600;
+   text-transform: uppercase;
+}
+
+.iptLogin {
+   font-size: .85rem !important;
+}
+
+.btnGeneral {
+   font-weight: 600 !important;
+   padding: 3px 25px !important;
+}
+
+.btn.btnProcess {
+   font-weight: 600;
+   padding: 1px 25px !important;
+}
+
+.titleInitials {
+   color: #1b1414;
+   text-transform: uppercase !important;
+   margin-bottom: 12px;
+   font-weight: 600;
+   font-size: 2rem;
+   letter-spacing: .5px;
+}
+
+.tittleModal {
+   font-weight: 600 !important;
+   text-transform: uppercase !important;
+   font-size: 1.25rem !important;
+}
+
 /* ?Diseño del Scroll */
 /* *Tamaño del scroll */
 *::-webkit-scrollbar {

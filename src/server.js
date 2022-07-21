@@ -57,7 +57,7 @@ app.use((req, res, next) => {
    next();
 });
 
-// app.use(require('./routes/index.routes'));
+app.use(require('./routes/index.routes'));
 
 app.use(express.static(path.join(__dirname + '/static')));
 

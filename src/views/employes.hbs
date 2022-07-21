@@ -2,11 +2,21 @@
       <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css" type="text/css">
       <link rel="stylesheet" href="/datatable/datatables.min.css" type="text/css">
       <link rel="stylesheet" href="/datatable/DataTable/css/dataTables.bootstrap5.min.css" type="text/css">
-      <link rel="stylesheet" href="/css/404.min.css" type="text/css">
+      <link rel="stylesheet" href="/css/navbar.min.css" type="text/css">
 
    </head>
 
 	<body>
+      {{> navbar}}
+
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 mx-auto">
+               {{> notifications}}
+            </div>
+         </div>
+      </div>
+      
       <div class="messages">
          <div class="number">404</div>
          <div class="text">Page Not Found</div>
