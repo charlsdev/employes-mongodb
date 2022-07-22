@@ -20,7 +20,7 @@
          <div class="row">
             <div class="col-md-12 text-center">
                <div class="lettersTittle">
-                  EMPLEADOS
+                  USUARIOS
                </div>
             </div>
          </div>
@@ -36,15 +36,16 @@
 
          <div class="row">
             <div class="col-md-12">
-               <table id="listEmployes" class="table is-striped table-striped table-bordered table-sm">
-                  <thead class="table-danger">
+               <table id="listUsers" class="table is-striped table-striped table-bordered table-sm">
+                  <thead class="table-info">
                      <tr>
                         <th nowrap scope="col">Cédula</th>
                         <th nowrap scope="col">Nombres Completos</th>
+                        <th nowrap scope="col">Fech. Nacimiento</th>
+                        <th nowrap scope="col">Género</th>
                         <th nowrap scope="col">Dirección</th>
                         <th nowrap scope="col">Teléfono</th>
                         <th nowrap scope="col">Email</th>
-                        <th nowrap scope="col">Empresa</th>
                         <th nowrap scope="col">Acciones</th>
                      </tr>
                   </thead>
@@ -69,7 +70,7 @@
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header d-flex justify-content-center">
-                  <div class="modal-title tittleModal">REGISTRAR EMPLEADO</div>
+                  <div class="modal-title tittleModal">CREAR CUENTA</div>
                </div>
 
                <div class="modal-body">
@@ -111,12 +112,6 @@
                         <label for="" class="form-label lblLogin">Email</label>
                         <input type="text" class="form-control iptLogin" id="email"  placeholder="Ingrese su correo electrónico"/>
                      </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Compañía</label>
-                        <select class="form-control iptLogin selectCom" id="idCompany">
-                           {{!-- Data companies --}}
-                        </select>
-                     </div>
                   </div>
                </div>
 
@@ -126,72 +121,10 @@
                      Close
                   </button>
 
-                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="createEmploye();">
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="createAccount();">
                      <i class="fa-regular fa-floppy-disk"></i>
-                     Registrar
+                     Guardar
                   </button>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header d-flex justify-content-center">
-                  <div class="modal-title tittleModal">ACTUALIZAR EMPLEADO</div>
-               </div>
-
-               <div class="modal-body">
-                  <div class="row">
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Cédula</label>
-                        <input type="text" class="form-control iptLogin" id="cedulaEdit" maxlength="10" placeholder="Ingrese su cédula" disabled />
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Apellidos</label>
-                        <input type="text" class="form-control iptLogin" id="apellidosEdit"  placeholder="Ingrese su apellido"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Nombres</label>
-                        <input type="text" class="form-control iptLogin" id="nombresEdit"  placeholder="Ingrese su nombre"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control iptLogin" id="fechaNacimientoEdit"  placeholder="Escoja su fecha de nacimiento"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Género</label>
-                        <select id="generoEdit" class="form-control iptLogin">
-                           <option value="" disabled selected>Seleccionar...</option>
-                           <option value="Masculino">Masculino</option>
-                           <option value="Femenino">Femenino</option>
-                           <option value="No definido">No definido</option>
-                        </select>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Dirección</label>
-                        <input type="text" class="form-control iptLogin" id="direccionEdit"  placeholder="Ingrese su dirección"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Teléfono</label>
-                        <input type="text" class="form-control iptLogin" id="telefonoEdit"  placeholder="Ingrese su teléfono" maxlength="10"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Email</label>
-                        <input type="text" class="form-control iptLogin" id="emailEdit"  placeholder="Ingrese su correo electrónico"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Compañía</label>
-                        <select class="form-control iptLogin selectComEdit" id="idCompanyEdit">
-                           {{!-- Data companies --}}
-                        </select>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="modal-footer d-flex justify-content-between align-items-center footerEdit">
-                  
                </div>
             </div>
          </div>
@@ -199,10 +132,10 @@
 
       <script>
          $(document).ready(function() {
-            listEmployes = $('#listEmployes').DataTable({
+            listUsers = $('#listUsers').DataTable({
                destroy: true,
                "ajax": {
-                  "url": '/allEmployes',
+                  "url": '/allUsers',
                   "dataSrc":""
                },
                "columns": [
@@ -214,6 +147,16 @@
                   {"data": null,
                         render: function ( data, type, row ) {
                            return `${row.nombres} ${row.apellidos}`;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.fechaNacimiento;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.genero;
                         }
                   },
                   {"data": null,
@@ -230,23 +173,12 @@
                         render: function ( data, type, row ) {
                            return row.email;
                         }
-                  },
-                  {"data": null,
-                        render: function ( data, type, row ) {
-                           return row._idCompany 
-                                       ? row._idCompany.nomEmpresa 
-                                       : `<center><span class="badge text-bg-danger" style="padding: 5px 15px; font-weight: 600;">SIN COMPAÑÍA</span></center>`;
-                        }
-                  },               
+                  },                 
                   {"data": null,
                         render: function ( data, type, row ) {
                            return `
                                  <center>
-                                    <button type="button" class="btn btn-outline-primary btn-sm btnTable" onclick="modalEditEmploye('${row._id}', '${row.cedula}', '${row.nombres}', '${row.apellidos}', '${row.fechaNacimiento}', '${row.genero}', '${row.direccion}', '${row.telefono}', '${row.email}', '${row._idCompany ? row._idCompany._id : ''}')">
-                                       <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-outline-danger btn-sm btnTable" onclick="deleteEmploye('${row._id}')">
+                                    <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="deleteUser('${row._id}')">
                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                  </center>
@@ -288,56 +220,6 @@
             }
          }
 
-         const allCompany = () => {            
-            $.ajax({
-               url: "/allCompanies",
-               type: "GET",
-               datatype: "json",
-            })
-            .done(function(res) {
-               document.querySelector('.selectCom').innerHTML = `
-                        <option value="" disabled selected>Seleccionar...</option>
-                     `;
-
-               if(res.length > 0) {
-                  res.forEach(data => {
-                     document.querySelector('.selectCom').innerHTML += `
-                           <option value="${data._id}">${data.nomEmpresa}</option>
-                        `;
-                  });
-               }
-            })
-            .fail(function() {
-               console.log("Error");
-            });
-         }
-
-         const allCompanyEdit = (idCompany) => {            
-            $.ajax({
-               url: "/allCompanies",
-               type: "GET",
-               datatype: "json",
-            })
-            .done(function(res) {
-               document.querySelector('.selectComEdit').innerHTML = `
-                        <option value="" disabled selected>Seleccionar...</option>
-                     `;
-
-               if(res.length > 0) {
-                  res.forEach(data => {
-                     document.querySelector('.selectComEdit').innerHTML += `
-                           <option value="${data._id}">${data.nomEmpresa}</option>
-                        `;
-                  });
-
-                  idCompany ?? $('#idCompanyEdit').val(`${idCompany}`);
-               }
-            })
-            .fail(function() {
-               console.log("Error");
-            });
-         }
-
          const openModalRegister = () => {
             $('#cedula').val('');
             $('#apellidos').val('');
@@ -347,11 +229,11 @@
             $('#direccion').val('');
             $('#telefono').val('');
             $('#email').val('');
-            allCompany();
+
             $('#modalRegister').modal('show');
          }
 
-         const createEmploye = () => {
+         const createAccount = () => {
             cedula = $.trim($('#cedula').val());
             apellidos = $.trim($('#apellidos').val());
             nombres = $.trim($('#nombres').val());
@@ -360,11 +242,10 @@
             direccion = $.trim($('#direccion').val());
             telefono = $.trim($('#telefono').val());
             email = $.trim($('#email').val());
-            idCompany = $.trim($('#idCompany').val());
             
             Swal.fire({
-               title: 'Registrar Empleado!',
-               html: `Deseas registrar el empleado en el sistema Employes System.`,
+               title: 'Registrar Cuenta!',
+               html: `Deseas registrarte en el sistema Employes System.`,
                imageUrl: '/img/employes.png',
                imageWidth: 230,
                imageHeight: 150,
@@ -386,8 +267,7 @@
                      genero == '' || 
                      direccion == '' || 
                      telefono == '' || 
-                     email == '' ||
-                     idCompany == ''
+                     email == ''
                   ) {
                      Swal.fire({
                         position: 'top-end',
@@ -402,7 +282,7 @@
                      })
                   } else {
                      $.ajax({
-                        url: "/registerEmploye",
+                        url: "/registerUser",
                         type: "POST",
                         datatype: "json",
                         data: {
@@ -413,8 +293,7 @@
                            genero,
                            direccion,
                            telefono,
-                           email,
-                           idCompany
+                           email
                         },
                      })
                      .done(function(res) {
@@ -429,7 +308,7 @@
                               allowOutsideClick: false
                            }).then((result) => {
                               if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
+                                 listUsers.ajax.reload(null, false);
                                  $('#modalRegister').modal('hide')
                               }
                            })
@@ -461,12 +340,12 @@
             })
          }
       
-         const deleteEmploye = (id) => {
+         const deleteUser = (id) => {
             ID = $.trim(id);
             
             Swal.fire({
-               title: 'Eliminar Empleado!',
-               html: `Deseas eliminar el empleado del sistema Employes System?`,
+               title: 'Eliminar Usuario!',
+               html: `Deseas eliminar el usuario del sistema Employes System?`,
                imageUrl: '/img/employes.png',
                imageWidth: 230,
                imageHeight: 150,
@@ -496,7 +375,7 @@
                      })
                   } else {
                      $.ajax({
-                        url: "/deleteEmploye",
+                        url: "/deleteUser",
                         type: "DELETE",
                         datatype: "json",
                         data: {
@@ -515,7 +394,7 @@
                               allowOutsideClick: false
                            }).then((result) => {
                               if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
+                                 listUsers.ajax.reload(null, false);
                               }
                            })
                         }
@@ -546,144 +425,4 @@
             })
          }
       
-         const modalEditEmploye = (id, cedula, nombres, apellidos, fechaNacimiento, genero, direccion, telefono, email, idCompany) => {
-            allCompanyEdit(idCompany);
-            $('#cedulaEdit').val(`${cedula}`);
-            $('#apellidosEdit').val(`${apellidos}`);
-            $('#nombresEdit').val(`${nombres}`);
-            $('#fechaNacimientoEdit').val(`${fechaNacimiento}`);
-            $('#generoEdit').val(`${genero}`);
-            $('#direccionEdit').val(`${direccion}`);
-            $('#telefonoEdit').val(`${telefono}`);
-            $('#emailEdit').val(`${email}`);
-            
-
-            document.querySelector('.footerEdit').innerHTML = `
-                     <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
-                        <i class="fa-regular fa-circle-xmark"></i>
-                        Close
-                     </button>
-
-                     <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="updateEmploye('${id}', '${cedula}');">
-                        <i class="fa-regular fa-floppy-disk"></i>
-                        Actualizar
-                     </button>
-                  `;
-
-            $('#modalEdit').modal('show');
-         }
-
-         const updateEmploye = (id, cedula) => {
-            id = $.trim(id);
-            cedula = $.trim(cedula);
-            apellidos = $.trim($('#apellidosEdit').val());
-            nombres = $.trim($('#nombresEdit').val());
-            fechaNacimiento = $.trim($('#fechaNacimientoEdit').val());
-            genero = $.trim($('#generoEdit').val());
-            direccion = $.trim($('#direccionEdit').val());
-            telefono = $.trim($('#telefonoEdit').val());
-            email = $.trim($('#emailEdit').val());
-            idCompany = $.trim($('#idCompanyEdit').val());
-            
-            Swal.fire({
-               title: 'Actualizar Empleado!',
-               html: `Deseas actulizar el empleado en el sistema Employes System.`,
-               imageUrl: '/img/employes.png',
-               imageWidth: 230,
-               imageHeight: 150,
-               imageAlt: 'Employes System',
-               showCancelButton: true,
-               confirmButtonColor: '#049947',
-               cancelButtonColor: '#f34943',
-               confirmButtonText: 'Sí, actualizar!',
-               cancelButtonText: 'No, cancelar!',
-               reverseButtons: true,
-               allowOutsideClick: false
-            }).then((result) => {
-               if (result.value == true) {
-                  if (
-                     id == '' || 
-                     cedula == '' || 
-                     apellidos == '' || 
-                     nombres == '' || 
-                     fechaNacimiento == '' || 
-                     genero == '' || 
-                     direccion == '' || 
-                     telefono == '' || 
-                     email == '' ||
-                     idCompany == ''
-                  ) {
-                     Swal.fire({
-                        position: 'top-end',
-                        imageUrl: '/img/employes.png',
-                        imageWidth: 230,
-                        imageHeight: 150,
-                        imageAlt: 'Employes System',
-                        title: 'CAMPOS VACÍOS',
-                        html: `<p style="font-size: 1rem;">Los campos no pueden ir vacíos o con espacios.</p>`,
-                        showConfirmButton: false,
-                        timer: 1500
-                     })
-                  } else {
-                     $.ajax({
-                        url: "/updateEmploye",
-                        type: "PUT",
-                        datatype: "json",
-                        data: {
-                           id,
-                           cedula,
-                           apellidos,
-                           nombres,
-                           fechaNacimiento,
-                           genero,
-                           direccion,
-                           telefono,
-                           email,
-                           idCompany
-                        },
-                     })
-                     .done(function(res) {
-                        if (res.res == 'true') {
-                           Swal.fire({
-                              title: res.tittle,
-                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
-                              imageUrl: '/img/employes.png',
-                              imageWidth: 230,
-                              imageHeight: 150,
-                              imageAlt: 'Employes System',
-                              allowOutsideClick: false
-                           }).then((result) => {
-                              if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
-                                 $('#modalEdit').modal('hide')
-                              }
-                           })
-                        }
-                        
-                        if (res.res == 'false') {                           
-                           Swal.fire({
-                              title: res.tittle,
-                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
-                              icon: res.icon,
-                              allowOutsideClick: false
-                           })
-                        }
-
-                        if (res.res == 'error') {                           
-                           Swal.fire({
-                              title: res.tittle,
-                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
-                              icon: res.icon,
-                              allowOutsideClick: false
-                           })
-                        }
-                     })
-                     .fail(function() {
-                        console.log("Error");
-                     });
-                  }
-               }
-            })
-         }
-         
       </script>

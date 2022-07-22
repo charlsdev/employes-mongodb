@@ -24,6 +24,11 @@ header::after {
    text-transform: uppercase;
    font-weight: 700;
    font-size: 1.1rem;
+   color: #EBEBD3;
+}
+
+.logo:hover {
+   color: #EBEBD3;
 }
 
 .logo span {
@@ -38,6 +43,7 @@ header::after {
    clip-path: circle(0px at top right);
    transition: clip-path ease-in-out 700ms;
    font-weight: 600;
+   z-index: 1000;
 }
 
 .site-nav--open {

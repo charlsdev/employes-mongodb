@@ -9,7 +9,7 @@ const respTime = require('response-time');
 const MongoStore = require('connect-mongo');
 
 const app = express();
-// require('./config/passport');
+require('./config/passport');
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));

@@ -28,4 +28,4 @@ const CompanyModel = new Schema({
    versionKey: false
 });
 
-module.exports = model('Compania', CompanyModel);
+module.exports = model('Companias', CompanyModel);

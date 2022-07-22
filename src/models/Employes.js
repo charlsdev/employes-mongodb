@@ -34,7 +34,12 @@ const EmployeModel = new Schema({
    email: {
       type: String,
       required: true
-   }
+   },
+   _idCompany: {
+      type: Schema.Types.ObjectId,
+      ref: 'Companias',
+      required: true
+   },
 }, {
    timestamps: true,
    versionKey: false

@@ -78,6 +78,11 @@ a {
    padding: 3px 25px !important;
 }
 
+.btnTable {
+   font-weight: 600 !important;
+   padding: 3px 15px !important;
+}
+
 .btn.btnProcess {
    font-weight: 600;
    padding: 1px 25px !important;

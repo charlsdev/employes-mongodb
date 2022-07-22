@@ -1,10 +1,10 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-const UsersModel = require('../models/Users');
+const UsersModel = require('../models/User');
 
 passport.use('local.login', new localStrategy({
-   usernameField: 'username',
+   usernameField: 'cedula',
    passwordField: 'password',
    passReqToCallback: true
 }, async (req, cedula, password, done) => {
@@ -16,7 +16,8 @@ passport.use('local.login', new localStrategy({
    if (!user) {
       return done(null, false, { message: 'Usuario y/o contraseña incorrectas...'});
    } else {
-      const passLog = await user.matchPassword(password);
+      const passLog = await user.verifyPass(password);
+      console.log(passLog);
 
       if (passLog) {
          return done(null, user);

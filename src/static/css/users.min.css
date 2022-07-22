@@ -1,0 +1,19 @@
+.lettersTittle {
+   margin-top: 1.7rem;
+   font-weight: 600;
+   font-size: 2rem;
+   margin-bottom: .9rem;
+}
+
+table {
+   font-size: .85rem;
+}
+
+table thead {
+   text-transform: uppercase;
+   /* background: #ff8e8e; */
+}
+
+table thead tr th {
+   text-align: center !important;
+}

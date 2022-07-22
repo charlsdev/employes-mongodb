@@ -1,0 +1,679 @@
+      <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css">
+      <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css" type="text/css">
+      <link rel="stylesheet" href="/datatable/datatables.min.css" type="text/css">
+      <link rel="stylesheet" href="/datatable/DataTables/css/dataTables.bootstrap5.min.css" type="text/css">
+      <link rel="stylesheet" href="/css/navbar.min.css" type="text/css">
+      <link rel="stylesheet" href="/css/users.min.css" type="text/css">
+
+   </head>
+
+	<body>
+      {{> navbar}}
+
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 mx-auto">
+               {{> notifications}}
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <div class="lettersTittle">
+                  PAGOS MENSUALES
+               </div>
+            </div>
+         </div>
+
+         <div class="row mb-4">
+            <div class="col-md-12">
+               <button type="button" class="btn btn-outline-success btn-sm btnGeneral" onclick="openModalRegister();">
+                  <i class="fa-regular fa-address-book"></i> &nbsp;
+                  Añadir
+               </button>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-12">
+               <table id="listPayments" class="table is-striped table-striped table-bordered table-sm">
+                  <thead class="table-success">
+                     <tr>
+                        <th nowrap scope="col">Empleado</th>
+                        <th nowrap scope="col">Empresa</th>
+                        <th nowrap scope="col">Sueldo</th>
+                        <th nowrap scope="col">Impuesto</th>
+                        <th nowrap scope="col">IESS</th>
+                        <th nowrap scope="col"># Hijos</th>
+                        <th nowrap scope="col">Bono H.</th>
+                        <th nowrap scope="col">Discapacidad</th>
+                        <th nowrap scope="col">Bono D.</th>
+                        <th nowrap scope="col">Sueldo Neto</th>
+                        <th nowrap scope="col">Acciones</th>
+                     </tr>
+                  </thead>
+                  
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <script src="/jquery/jquery.min.js"></script>
+      <script src="/bootstrap/js/popper.min.js"></script>
+      <script src="/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/sweetalert2/sweetalert2.min.js"></script>
+      <script src="/fontawesome/all.min.js"></script>
+      <script src="/datatable/datatables.min.js"></script>
+      <script src="/datatable/DataTables/js/jquery.dataTables.js"></script>
+      <script src="/datatable/DataTables/js/dataTables.bootstrap5.min.js"></script>
+      <script src="/js/navbar.min.js"></script>
+
+      <div class="modal fade" id="modalRegister" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header d-flex justify-content-center">
+                  <div class="modal-title tittleModal">REGISTRAR PAGO</div>
+               </div>
+
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Empleado</label>
+                        <select class="form-control iptLogin selectEmp" id="idEmpleado">
+                           {{!-- Data companies --}}
+                        </select>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Compañía</label>
+                        <select class="form-control iptLogin selectCom" id="idCompany">
+                           {{!-- Data companies --}}
+                        </select>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Salario a Percibir</label>
+                        <input type="text" class="form-control iptLogin" id="salarioPercibir"  placeholder="Bono percibido por discapacidad" />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Discapacidad</label>
+                        <select class="form-control iptLogin" id="discapacidad" >
+                           <option value="" disabled selected>Seleccionar...</option>
+                           <option value="SI">SI</option>
+                           <option value="NO">NO</option>
+                        </select>
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Bono por Discapacidad</label>
+                        <input type="text" class="form-control iptLogin" id="bonoDis"  placeholder="Bono percibido por discapacidad"  disabled />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Números de Hijos</label>
+                        <input type="number" class="form-control iptLogin" id="numHijos"  placeholder="Números de hijos" />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Bonificación por los hijos</label>
+                        <input type="text" class="form-control iptLogin" id="bonoHijos"  placeholder="Bonificación percibida por los hijos" disabled />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Impuesto a la Renta</label>
+                        <input type="text" class="form-control iptLogin" id="impuesto" placeholder="Impuesto a la Renta" disabled />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Retención del IESS</label>
+                        <input type="text" class="form-control iptLogin" id="iess"  placeholder="Retención del IESS" disabled />
+                     </div>
+                     <div class="col-md-12 mb-2">
+                        <label for="" class="form-label lblLogin">Sueldo Neto Final</label>
+                        <input type="text" class="form-control iptLogin" id="sueldoNeto"  placeholder="Sueldo neto a percibir" disabled />
+                     </div>
+                  </div>
+               </div>
+
+               <div class="modal-footer d-flex justify-content-between align-items-center footerModal">
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <script>
+         $(document).ready(function() {
+            listPayments = $('#listPayments').DataTable({
+               destroy: true,
+               "ajax": {
+                  "url": '/allPayments',
+                  "dataSrc":""
+               },
+               "columns": [
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return `${row._idEmpleado.nombres} ${row._idEmpleado.apellidos}`;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return `${row._idCompany.nomEmpresa}`;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.salarioPercibir;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.impuesto;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.iess;
+                        }
+                  },                 
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.numHijos;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.bonoHijos;
+                        }
+                  },
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.discapacidad;
+                        }
+                  },                 
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.bonoDis;
+                        }
+                  },              
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return row.sueldoNeto;
+                        }
+                  },              
+                  {"data": null,
+                        render: function ( data, type, row ) {
+                           return `
+                                 <center>
+                                    <button type="button" class="btn btn-outline-danger btn-sm btnTable" onclick="deletePayment('${row._id}')">
+                                       <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                 </center>
+                              `;
+                        }
+                  },
+               ],
+               responsive: true,
+               language: idioma,
+            });
+         });
+
+         var idioma = {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+               "sFirst":    "Primero",
+               "sLast":     "Último",
+               "sNext":     "Siguiente",
+               "sPrevious": "Anterior"
+            },
+            "oAria": {
+               "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+               "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+               "copy": "Copiar",
+               "colvis": "Visibilidad"
+            }
+         }
+
+         const allCompanies = () => {
+            $.ajax({
+               url: "/allCompanies",
+               type: "GET",
+               datatype: "json",
+            })
+            .done(function(res) {
+               document.querySelector('.selectCom').innerHTML = `
+                        <option value="" disabled selected>Seleccionar...</option>
+                     `;
+
+               if(res.length > 0) {
+                  res.forEach(data => {
+                     document.querySelector('.selectCom').innerHTML += `
+                           <option value="${data._id}">${data.nomEmpresa}</option>
+                        `;
+                  });
+               }
+            })
+            .fail(function() {
+               console.log("Error");
+            });
+         }
+
+         const allEmployes = () => {
+            $.ajax({
+               url: "/allEmployes",
+               type: "GET",
+               datatype: "json",
+            })
+            .done(function(res) {
+               document.querySelector('.selectEmp').innerHTML = `
+                        <option value="" disabled selected>Seleccionar...</option>
+                     `;
+
+               if(res.length > 0) {
+                  res.forEach(data => {
+                     document.querySelector('.selectEmp').innerHTML += `
+                           <option value="${data._id}">${data.nombres} ${data.apellidos}</option>
+                        `;
+                  });
+               }
+            })
+            .fail(function() {
+               console.log("Error");
+            });
+         }
+
+         const openModalRegister = () => {
+            $('#idEmpleado').val('');
+            $('#idCompany').val('');
+            $('#salarioPercibir').val('');
+            $('#discapacidad').val('');
+            $('#bonoDis').val('');
+            $('#numHijos').val('');
+            $('#bonoHijos').val('');
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#sueldoNeto').val('');
+
+            allCompanies();
+            allEmployes();
+
+            $('#modalRegister').modal('show');
+         }
+
+         const calcularSalario = () => {
+            let impRenta = 0, retenIESS = 0, bonHij = 0, bonDis = 0, sueldoN = 0;
+
+            idEmpleado = $.trim($('#idEmpleado').val());
+            idCompany = $.trim($('#idCompany').val());
+            salarioPercibir = $.trim($('#salarioPercibir').val());
+            discapacidad = $.trim($('#discapacidad').val());
+            numHijos = $.trim($('#numHijos').val());
+
+            if (
+               idEmpleado === '' || 
+               idCompany === '' || 
+               salarioPercibir === '' ||
+               discapacidad === '' ||
+               numHijos === ''
+            ) {
+               Swal.fire({
+                  position: 'top-end',
+                  imageUrl: '/img/employes.png',
+                  imageWidth: 190,
+                  imageHeight: 120,
+                  imageAlt: 'Employes System',
+                  title: 'CAMPOS VACÍOS',
+                  html: `<p style="font-size: 1rem;">No se puede calcular el salario si no se ha llenado todos los campos.</p>`,
+                  showConfirmButton: false,
+                  timer: 1500
+               })
+            } else {
+               if (salarioPercibir > 940) {
+                  impRenta = salarioPercibir * 0.08;
+               }
+               $('#impuesto').val(`${impRenta}`);
+
+               retenIESS = salarioPercibir * 0.1145;
+               $('#iess').val(`${retenIESS.toFixed(2)}`);
+
+               if (numHijos > 2) {
+                  bonHij = salarioPercibir * 0.02;
+               }
+               $('#bonoHijos').val(`${bonHij.toFixed(2)}`);
+
+               if (discapacidad == 'SI') {
+                  bonDis = 20;
+               }
+               $('#bonoDis').val(`${bonDis}`);
+
+               sueldoN = ((salarioPercibir - (impRenta + retenIESS)) + (bonHij + bonDis));
+               $('#sueldoNeto').val(`${sueldoN.toFixed(2)}`);
+
+               document.querySelector('.footerModal').innerHTML = `
+                        <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                           <i class="fa-regular fa-circle-xmark"></i>
+                           Close
+                        </button>
+
+                        <button type="button" class="btn btn-outline-success btn-sm btnGeneral" onclick="savePayment();">
+                           <i class="fa-regular fa-floppy-disk"></i>
+                           Guardar Pago
+                        </button>
+                     `;
+            }
+         }
+
+         $('#idEmpleado').change(e => {
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#bonoHijos').val('');
+            $('#bonoDis').val('');
+            $('#sueldoNeto').val('');
+
+            document.querySelector('.footerModal').innerHTML = `
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               `;
+         });
+
+         $('#idCompany').change(e => {
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#bonoHijos').val('');
+            $('#bonoDis').val('');
+            $('#sueldoNeto').val('');
+
+            document.querySelector('.footerModal').innerHTML = `
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               `;
+         });
+
+         $('#discapacidad').change(e => {
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#bonoHijos').val('');
+            $('#bonoDis').val('');
+            $('#sueldoNeto').val('');
+
+            document.querySelector('.footerModal').innerHTML = `
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               `;
+         });
+
+         $('#numHijos').keyup(e => {
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#bonoHijos').val('');
+            $('#bonoDis').val('');
+            $('#sueldoNeto').val('');
+
+            document.querySelector('.footerModal').innerHTML = `
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               `;
+         });
+         
+         $('#salarioPercibir').keyup(e => {
+            $('#impuesto').val('');
+            $('#iess').val('');
+            $('#bonoHijos').val('');
+            $('#bonoDis').val('');
+            $('#sueldoNeto').val('');
+
+            document.querySelector('.footerModal').innerHTML = `
+                  <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
+                     <i class="fa-regular fa-circle-xmark"></i>
+                     Close
+                  </button>
+
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="calcularSalario();">
+                     <i class="fa-solid fa-calculator"></i>
+                     Calcular
+                  </button>
+               `;
+         });
+
+         const savePayment = () => {
+            idEmpleado = $.trim($('#idEmpleado').val());
+            idCompany = $.trim($('#idCompany').val());
+            salarioPercibir = $.trim($('#salarioPercibir').val());
+            discapacidad = $.trim($('#discapacidad').val());
+            bonoDis = $.trim($('#bonoDis').val());
+            numHijos = $.trim($('#numHijos').val());
+            bonoHijos = $.trim($('#bonoHijos').val());
+            impuesto = $.trim($('#impuesto').val());
+            iess = $.trim($('#iess').val());
+            sueldoNeto = $.trim($('#sueldoNeto').val());
+            
+            Swal.fire({
+               title: 'Registrar Pago!',
+               html: `Deseas registrar el pago del empleado en el sistema Employes System.`,
+               imageUrl: '/img/employes.png',
+               imageWidth: 230,
+               imageHeight: 150,
+               imageAlt: 'Employes System',
+               showCancelButton: true,
+               confirmButtonColor: '#049947',
+               cancelButtonColor: '#f34943',
+               confirmButtonText: 'Sí, registrar!',
+               cancelButtonText: 'No, cancelar!',
+               reverseButtons: true,
+               allowOutsideClick: false
+            }).then((result) => {
+               if (result.value == true) {
+                  if (
+                     idEmpleado == '' || 
+                     idCompany == '' || 
+                     salarioPercibir == '' || 
+                     discapacidad == '' || 
+                     bonoDis == '' || 
+                     numHijos == '' || 
+                     bonoHijos == '' || 
+                     impuesto == '' ||
+                     iess == '' ||
+                     sueldoNeto == ''
+                  ) {
+                     Swal.fire({
+                        position: 'top-end',
+                        imageUrl: '/img/employes.png',
+                        imageWidth: 230,
+                        imageHeight: 150,
+                        imageAlt: 'Employes System',
+                        title: 'CAMPOS VACÍOS',
+                        html: `<p style="font-size: 1rem;">Los campos no pueden ir vacíos o con espacios.</p>`,
+                        showConfirmButton: false,
+                        timer: 1500
+                     })
+                  } else {
+                     $.ajax({
+                        url: "/registerPayment",
+                        type: "POST",
+                        datatype: "json",
+                        data: {
+                           idEmpleado,
+                           idCompany,
+                           salarioPercibir,
+                           discapacidad,
+                           bonoDis,
+                           numHijos,
+                           bonoHijos,
+                           impuesto,
+                           iess,
+                           sueldoNeto
+                        },
+                     })
+                     .done(function(res) {
+                        if (res.res == 'true') {
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              imageUrl: '/img/employes.png',
+                              imageWidth: 230,
+                              imageHeight: 150,
+                              imageAlt: 'Employes System',
+                              allowOutsideClick: false
+                           }).then((result) => {
+                              if (result.value == true) {
+                                 listPayments.ajax.reload(null, false);
+                                 $('#modalRegister').modal('hide')
+                              }
+                           })
+                        }
+                        
+                        if (res.res == 'false') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+
+                        if (res.res == 'error') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+                     })
+                     .fail(function() {
+                        console.log("Error");
+                     });
+                  }
+               }
+            })
+         }
+      
+         const deletePayment = (id) => {
+            ID = $.trim(id);
+            
+            Swal.fire({
+               title: 'Eliminar Empleado!',
+               html: `Deseas eliminar el empleado del sistema Employes System?`,
+               imageUrl: '/img/employes.png',
+               imageWidth: 230,
+               imageHeight: 150,
+               imageAlt: 'Employes System',
+               showCancelButton: true,
+               confirmButtonColor: '#049947',
+               cancelButtonColor: '#f34943',
+               confirmButtonText: 'Sí, eliminar!',
+               cancelButtonText: 'No, cancelar!',
+               reverseButtons: true,
+               allowOutsideClick: false
+            }).then((result) => {
+               if (result.value == true) {
+                  if (
+                     ID === ''
+                  ) {
+                     Swal.fire({
+                        position: 'top-end',
+                        imageUrl: '/img/employes.png',
+                        imageWidth: 230,
+                        imageHeight: 150,
+                        imageAlt: 'Employes System',
+                        title: 'CAMPOS VACÍOS',
+                        html: `<p style="font-size: 1rem;">Los campos no pueden ir vacíos o con espacios.</p>`,
+                        showConfirmButton: false,
+                        timer: 1500
+                     })
+                  } else {
+                     $.ajax({
+                        url: "/deletePayment",
+                        type: "DELETE",
+                        datatype: "json",
+                        data: {
+                           ID
+                        },
+                     })
+                     .done(function(res) {
+                        if (res.res == 'true') {
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              imageUrl: '/img/employes.png',
+                              imageWidth: 230,
+                              imageHeight: 150,
+                              imageAlt: 'Employes System',
+                              allowOutsideClick: false
+                           }).then((result) => {
+                              if (result.value == true) {
+                                 listPayments.ajax.reload(null, false);
+                              }
+                           })
+                        }
+                        
+                        if (res.res == 'false') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+
+                        if (res.res == 'error') {                           
+                           Swal.fire({
+                              title: res.tittle,
+                              html: '<p style="font-size: 1rem;">'+res.description+'</p>',
+                              icon: res.icon,
+                              allowOutsideClick: false
+                           })
+                        }
+                     })
+                     .fail(function() {
+                        console.log("Error");
+                     });
+                  }
+               }
+            })
+         }
+         
+      </script>

@@ -20,7 +20,7 @@
          <div class="row">
             <div class="col-md-12 text-center">
                <div class="lettersTittle">
-                  EMPLEADOS
+                  COMPAÑIAS
                </div>
             </div>
          </div>
@@ -36,15 +36,14 @@
 
          <div class="row">
             <div class="col-md-12">
-               <table id="listEmployes" class="table is-striped table-striped table-bordered table-sm">
-                  <thead class="table-danger">
+               <table id="listCompanies" class="table is-striped table-striped table-bordered table-sm">
+                  <thead class="table-warning">
                      <tr>
-                        <th nowrap scope="col">Cédula</th>
-                        <th nowrap scope="col">Nombres Completos</th>
+                        <th nowrap scope="col">RUC</th>
+                        <th nowrap scope="col">Compañía</th>
                         <th nowrap scope="col">Dirección</th>
                         <th nowrap scope="col">Teléfono</th>
                         <th nowrap scope="col">Email</th>
-                        <th nowrap scope="col">Empresa</th>
                         <th nowrap scope="col">Acciones</th>
                      </tr>
                   </thead>
@@ -69,35 +68,18 @@
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header d-flex justify-content-center">
-                  <div class="modal-title tittleModal">REGISTRAR EMPLEADO</div>
+                  <div class="modal-title tittleModal">REGISTRAR EMPRESA</div>
                </div>
 
                <div class="modal-body">
                   <div class="row">
                      <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Cédula</label>
-                        <input type="text" class="form-control iptLogin" id="cedula" maxlength="10" placeholder="Ingrese su cédula"/>
+                        <label for="" class="form-label lblLogin">RUC</label>
+                        <input type="text" class="form-control iptLogin" id="ruc" maxlength="13" placeholder="Ingrese el RUC de la empresa"/>
                      </div>
                      <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Apellidos</label>
-                        <input type="text" class="form-control iptLogin" id="apellidos"  placeholder="Ingrese su apellido"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Nombres</label>
-                        <input type="text" class="form-control iptLogin" id="nombres"  placeholder="Ingrese su nombre"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control iptLogin" id="fechaNacimiento"  placeholder="Escoja su fecha de nacimiento"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Género</label>
-                        <select id="genero" class="form-control iptLogin">
-                           <option value="" disabled selected>Seleccionar...</option>
-                           <option value="Masculino">Masculino</option>
-                           <option value="Femenino">Femenino</option>
-                           <option value="No definido">No definido</option>
-                        </select>
+                        <label for="" class="form-label lblLogin">Empresa</label>
+                        <input type="text" class="form-control iptLogin" id="nomEmpresa"  placeholder="Ingrese el nombre de la empresa"/>
                      </div>
                      <div class="col-md-12 mb-2">
                         <label for="" class="form-label lblLogin">Dirección</label>
@@ -111,12 +93,6 @@
                         <label for="" class="form-label lblLogin">Email</label>
                         <input type="text" class="form-control iptLogin" id="email"  placeholder="Ingrese su correo electrónico"/>
                      </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Compañía</label>
-                        <select class="form-control iptLogin selectCom" id="idCompany">
-                           {{!-- Data companies --}}
-                        </select>
-                     </div>
                   </div>
                </div>
 
@@ -126,7 +102,7 @@
                      Close
                   </button>
 
-                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="createEmploye();">
+                  <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="createCompany();">
                      <i class="fa-regular fa-floppy-disk"></i>
                      Registrar
                   </button>
@@ -139,35 +115,18 @@
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header d-flex justify-content-center">
-                  <div class="modal-title tittleModal">ACTUALIZAR EMPLEADO</div>
+                  <div class="modal-title tittleModal">EDITAR EMPRESA</div>
                </div>
 
                <div class="modal-body">
                   <div class="row">
                      <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Cédula</label>
-                        <input type="text" class="form-control iptLogin" id="cedulaEdit" maxlength="10" placeholder="Ingrese su cédula" disabled />
+                        <label for="" class="form-label lblLogin">RUC</label>
+                        <input type="text" class="form-control iptLogin" id="rucEdit" maxlength="13" placeholder="Ingrese el RUC de la empresa" disabled/>
                      </div>
                      <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Apellidos</label>
-                        <input type="text" class="form-control iptLogin" id="apellidosEdit"  placeholder="Ingrese su apellido"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Nombres</label>
-                        <input type="text" class="form-control iptLogin" id="nombresEdit"  placeholder="Ingrese su nombre"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control iptLogin" id="fechaNacimientoEdit"  placeholder="Escoja su fecha de nacimiento"/>
-                     </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Género</label>
-                        <select id="generoEdit" class="form-control iptLogin">
-                           <option value="" disabled selected>Seleccionar...</option>
-                           <option value="Masculino">Masculino</option>
-                           <option value="Femenino">Femenino</option>
-                           <option value="No definido">No definido</option>
-                        </select>
+                        <label for="" class="form-label lblLogin">Empresa</label>
+                        <input type="text" class="form-control iptLogin" id="nomEmpresaEdit"  placeholder="Ingrese el nombre de la empresa"/>
                      </div>
                      <div class="col-md-12 mb-2">
                         <label for="" class="form-label lblLogin">Dirección</label>
@@ -181,12 +140,6 @@
                         <label for="" class="form-label lblLogin">Email</label>
                         <input type="text" class="form-control iptLogin" id="emailEdit"  placeholder="Ingrese su correo electrónico"/>
                      </div>
-                     <div class="col-md-12 mb-2">
-                        <label for="" class="form-label lblLogin">Compañía</label>
-                        <select class="form-control iptLogin selectComEdit" id="idCompanyEdit">
-                           {{!-- Data companies --}}
-                        </select>
-                     </div>
                   </div>
                </div>
 
@@ -199,21 +152,21 @@
 
       <script>
          $(document).ready(function() {
-            listEmployes = $('#listEmployes').DataTable({
+            listCompanies = $('#listCompanies').DataTable({
                destroy: true,
                "ajax": {
-                  "url": '/allEmployes',
+                  "url": '/allCompanies',
                   "dataSrc":""
                },
                "columns": [
                   {"data": null,
                         render: function ( data, type, row ) {
-                           return row.cedula;
+                           return row.ruc;
                         }
                   },
                   {"data": null,
                         render: function ( data, type, row ) {
-                           return `${row.nombres} ${row.apellidos}`;
+                           return `${row.nomEmpresa}`;
                         }
                   },
                   {"data": null,
@@ -230,23 +183,16 @@
                         render: function ( data, type, row ) {
                            return row.email;
                         }
-                  },
-                  {"data": null,
-                        render: function ( data, type, row ) {
-                           return row._idCompany 
-                                       ? row._idCompany.nomEmpresa 
-                                       : `<center><span class="badge text-bg-danger" style="padding: 5px 15px; font-weight: 600;">SIN COMPAÑÍA</span></center>`;
-                        }
-                  },               
+                  },                 
                   {"data": null,
                         render: function ( data, type, row ) {
                            return `
                                  <center>
-                                    <button type="button" class="btn btn-outline-primary btn-sm btnTable" onclick="modalEditEmploye('${row._id}', '${row.cedula}', '${row.nombres}', '${row.apellidos}', '${row.fechaNacimiento}', '${row.genero}', '${row.direccion}', '${row.telefono}', '${row.email}', '${row._idCompany ? row._idCompany._id : ''}')">
+                                    <button type="button" class="btn btn-outline-primary btn-sm btnTable" onclick="modalEditCompany('${row._id}', '${row.ruc}', '${row.nomEmpresa}', '${row.direccion}', '${row.telefono}', '${row.email}')">
                                        <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-danger btn-sm btnTable" onclick="deleteEmploye('${row._id}')">
+                                    <button type="button" class="btn btn-outline-danger btn-sm btnTable" onclick="deleteCompany('${row._id}')">
                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                  </center>
@@ -288,83 +234,26 @@
             }
          }
 
-         const allCompany = () => {            
-            $.ajax({
-               url: "/allCompanies",
-               type: "GET",
-               datatype: "json",
-            })
-            .done(function(res) {
-               document.querySelector('.selectCom').innerHTML = `
-                        <option value="" disabled selected>Seleccionar...</option>
-                     `;
-
-               if(res.length > 0) {
-                  res.forEach(data => {
-                     document.querySelector('.selectCom').innerHTML += `
-                           <option value="${data._id}">${data.nomEmpresa}</option>
-                        `;
-                  });
-               }
-            })
-            .fail(function() {
-               console.log("Error");
-            });
-         }
-
-         const allCompanyEdit = (idCompany) => {            
-            $.ajax({
-               url: "/allCompanies",
-               type: "GET",
-               datatype: "json",
-            })
-            .done(function(res) {
-               document.querySelector('.selectComEdit').innerHTML = `
-                        <option value="" disabled selected>Seleccionar...</option>
-                     `;
-
-               if(res.length > 0) {
-                  res.forEach(data => {
-                     document.querySelector('.selectComEdit').innerHTML += `
-                           <option value="${data._id}">${data.nomEmpresa}</option>
-                        `;
-                  });
-
-                  idCompany ?? $('#idCompanyEdit').val(`${idCompany}`);
-               }
-            })
-            .fail(function() {
-               console.log("Error");
-            });
-         }
-
          const openModalRegister = () => {
-            $('#cedula').val('');
-            $('#apellidos').val('');
-            $('#nombres').val('');
-            $('#fechaNacimiento').val('');
-            $('#genero').val('');
+            $('#ruc').val('');
+            $('#nomEmpresa').val('');
             $('#direccion').val('');
             $('#telefono').val('');
             $('#email').val('');
-            allCompany();
+
             $('#modalRegister').modal('show');
          }
 
-         const createEmploye = () => {
-            cedula = $.trim($('#cedula').val());
-            apellidos = $.trim($('#apellidos').val());
-            nombres = $.trim($('#nombres').val());
-            fechaNacimiento = $.trim($('#fechaNacimiento').val());
-            genero = $.trim($('#genero').val());
+         const createCompany = () => {
+            ruc = $.trim($('#ruc').val());
+            nomEmpresa = $.trim($('#nomEmpresa').val());
             direccion = $.trim($('#direccion').val());
             telefono = $.trim($('#telefono').val());
             email = $.trim($('#email').val());
-            idCompany = $.trim($('#idCompany').val());
             
             Swal.fire({
-               title: 'Registrar Empleado!',
-               html: `Deseas registrar el empleado en el sistema Employes System.`,
+               title: 'Registrar Empresa!',
+               html: `Deseas registrar la empresa en el sistema Employes System.`,
                imageUrl: '/img/employes.png',
                imageWidth: 230,
                imageHeight: 150,
@@ -379,15 +268,11 @@
             }).then((result) => {
                if (result.value == true) {
                   if (
-                     cedula == '' || 
-                     apellidos == '' || 
-                     nombres == '' || 
-                     fechaNacimiento == '' || 
-                     genero == '' || 
+                     ruc == '' || 
+                     nomEmpresa == '' || 
                      direccion == '' || 
                      telefono == '' || 
-                     email == '' ||
-                     idCompany == ''
+                     email == ''
                   ) {
                      Swal.fire({
                         position: 'top-end',
@@ -402,19 +287,15 @@
                      })
                   } else {
                      $.ajax({
-                        url: "/registerEmploye",
+                        url: "/registerCompany",
                         type: "POST",
                         datatype: "json",
                         data: {
-                           cedula,
-                           apellidos,
-                           nombres,
-                           fechaNacimiento,
-                           genero,
+                           ruc,
+                           nomEmpresa,
                            direccion,
                            telefono,
-                           email,
-                           idCompany
+                           email
                         },
                      })
                      .done(function(res) {
@@ -429,7 +310,7 @@
                               allowOutsideClick: false
                            }).then((result) => {
                               if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
+                                 listCompanies.ajax.reload(null, false);
                                  $('#modalRegister').modal('hide')
                               }
                            })
@@ -461,12 +342,12 @@
             })
          }
       
-         const deleteEmploye = (id) => {
+         const deleteCompany = (id) => {
             ID = $.trim(id);
             
             Swal.fire({
-               title: 'Eliminar Empleado!',
-               html: `Deseas eliminar el empleado del sistema Employes System?`,
+               title: 'Eliminar Compañía!',
+               html: `Deseas eliminar la compañía del sistema Employes System?`,
                imageUrl: '/img/employes.png',
                imageWidth: 230,
                imageHeight: 150,
@@ -496,7 +377,7 @@
                      })
                   } else {
                      $.ajax({
-                        url: "/deleteEmploye",
+                        url: "/deleteCompany",
                         type: "DELETE",
                         datatype: "json",
                         data: {
@@ -515,7 +396,7 @@
                               allowOutsideClick: false
                            }).then((result) => {
                               if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
+                                 listCompanies.ajax.reload(null, false);
                               }
                            })
                         }
@@ -546,17 +427,12 @@
             })
          }
       
-         const modalEditEmploye = (id, cedula, nombres, apellidos, fechaNacimiento, genero, direccion, telefono, email, idCompany) => {
-            allCompanyEdit(idCompany);
-            $('#cedulaEdit').val(`${cedula}`);
-            $('#apellidosEdit').val(`${apellidos}`);
-            $('#nombresEdit').val(`${nombres}`);
-            $('#fechaNacimientoEdit').val(`${fechaNacimiento}`);
-            $('#generoEdit').val(`${genero}`);
+         const modalEditCompany = (id, ruc, nomEmpresa, direccion, telefono, email) => {
+            $('#rucEdit').val(`${ruc}`);
+            $('#nomEmpresaEdit').val(`${nomEmpresa}`);
             $('#direccionEdit').val(`${direccion}`);
             $('#telefonoEdit').val(`${telefono}`);
             $('#emailEdit').val(`${email}`);
-            
 
             document.querySelector('.footerEdit').innerHTML = `
                      <button type="button" class="btn btn-outline-secondary btn-sm btnGeneral" data-bs-dismiss="modal">
@@ -564,7 +440,7 @@
                         Close
                      </button>
 
-                     <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="updateEmploye('${id}', '${cedula}');">
+                     <button type="button" class="btn btn-outline-danger btn-sm btnGeneral" onclick="updateCompany('${id}', '${ruc}');">
                         <i class="fa-regular fa-floppy-disk"></i>
                         Actualizar
                      </button>
@@ -573,21 +449,17 @@
             $('#modalEdit').modal('show');
          }
 
-         const updateEmploye = (id, cedula) => {
+         const updateCompany = (id, ruc) => {
             id = $.trim(id);
-            cedula = $.trim(cedula);
-            apellidos = $.trim($('#apellidosEdit').val());
-            nombres = $.trim($('#nombresEdit').val());
-            fechaNacimiento = $.trim($('#fechaNacimientoEdit').val());
-            genero = $.trim($('#generoEdit').val());
+            ruc = $.trim(ruc);
+            nomEmpresa = $.trim($('#nomEmpresaEdit').val());
             direccion = $.trim($('#direccionEdit').val());
             telefono = $.trim($('#telefonoEdit').val());
             email = $.trim($('#emailEdit').val());
-            idCompany = $.trim($('#idCompanyEdit').val());
             
             Swal.fire({
-               title: 'Actualizar Empleado!',
-               html: `Deseas actulizar el empleado en el sistema Employes System.`,
+               title: 'Actualizar Compañía!',
+               html: `Deseas actulizar la compañía en el sistema Employes System.`,
                imageUrl: '/img/employes.png',
                imageWidth: 230,
                imageHeight: 150,
@@ -603,15 +475,11 @@
                if (result.value == true) {
                   if (
                      id == '' || 
-                     cedula == '' || 
-                     apellidos == '' || 
-                     nombres == '' || 
-                     fechaNacimiento == '' || 
-                     genero == '' || 
+                     ruc == '' || 
+                     nomEmpresa == '' || 
                      direccion == '' || 
                      telefono == '' || 
-                     email == '' ||
-                     idCompany == ''
+                     email == ''
                   ) {
                      Swal.fire({
                         position: 'top-end',
@@ -626,20 +494,16 @@
                      })
                   } else {
                      $.ajax({
-                        url: "/updateEmploye",
+                        url: "/updateCompany",
                         type: "PUT",
                         datatype: "json",
                         data: {
                            id,
-                           cedula,
-                           apellidos,
-                           nombres,
-                           fechaNacimiento,
-                           genero,
+                           ruc,
+                           nomEmpresa,
                            direccion,
                            telefono,
-                           email,
-                           idCompany
+                           email
                         },
                      })
                      .done(function(res) {
@@ -654,7 +518,7 @@
                               allowOutsideClick: false
                            }).then((result) => {
                               if (result.value == true) {
-                                 listEmployes.ajax.reload(null, false);
+                                 listCompanies.ajax.reload(null, false);
                                  $('#modalEdit').modal('hide')
                               }
                            })
@@ -685,5 +549,6 @@
                }
             })
          }
+      
          
       </script>

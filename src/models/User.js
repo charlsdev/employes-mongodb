@@ -49,7 +49,7 @@ UserModel.methods.encryptPass = async password => {
    return await bcrypt.hash(password, await bcrypt.genSalt(10)); 
 };
 
-UserModel.methods.verifyPass = async (password) => {
+UserModel.methods.verifyPass = async function(password) {
    return await bcrypt.compare(password, this.password);
 };
 

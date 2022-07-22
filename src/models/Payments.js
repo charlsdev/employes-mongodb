@@ -1,13 +1,17 @@
 const { Schema, model } = require('mongoose');
 
-const CompanyModel = new Schema({
+const PaymentModel = new Schema({
    _idEmpleado: {
       type: Schema.Types.ObjectId,
       ref: 'Empleados'
    },
    _idCompany: {
       type: Schema.Types.ObjectId,
-      ref: 'Compania'
+      ref: 'Companias'
+   },
+   salarioPercibir: {
+      type: String,
+      required: true
    },
    impuesto: {
       type: String,
@@ -33,7 +37,7 @@ const CompanyModel = new Schema({
       type: String,
       required: true
    },
-   sueldoNetovlc: {
+   sueldoNeto: {
       type: String,
       required: true
    }
@@ -42,4 +46,4 @@ const CompanyModel = new Schema({
    versionKey: false
 });
 
-module.exports = model('Compania', CompanyModel);
+module.exports = model('Pagos', PaymentModel);
