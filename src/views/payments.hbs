@@ -346,7 +346,7 @@
                if (salarioPercibir > 940) {
                   impRenta = salarioPercibir * 0.08;
                }
-               $('#impuesto').val(`${impRenta}`);
+               $('#impuesto').val(`${impRenta.toFixed(2)}`);
 
                retenIESS = salarioPercibir * 0.1145;
                $('#iess').val(`${retenIESS.toFixed(2)}`);
@@ -359,7 +359,7 @@
                if (discapacidad == 'SI') {
                   bonDis = 20;
                }
-               $('#bonoDis').val(`${bonDis}`);
+               $('#bonoDis').val(`${bonDis.toFixed(2)}`);
 
                sueldoN = ((salarioPercibir - (impRenta + retenIESS)) + (bonHij + bonDis));
                $('#sueldoNeto').val(`${sueldoN.toFixed(2)}`);
